@@ -3,8 +3,17 @@
 /* ======== Angular material custom themes ======== */
 /* colour names and values from */
 /* https://material.io/design/color/the-color-system.html#color-theme-creation */
-$my-primary: mat.m2-define-palette(mat.$m2-indigo-palette, 900);
-$my-accent: mat.m2-define-palette(mat.$m2-blue-palette, 300, 200, 400);
+$my-primary: mat.m2-define-palette(
+  mat.$m2-deep-purple-palette,
+  900
+); // Dark purple
+$my-accent: mat.m2-define-palette(
+  mat.$m2-purple-palette,
+  300,
+  200,
+  400
+); // Light purple
+
 $my-theme: mat.m2-define-light-theme(
   (
     color: (
