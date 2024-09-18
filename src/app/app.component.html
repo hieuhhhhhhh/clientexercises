@@ -7,5 +7,8 @@
 </mat-toolbar>
 <mat-menu #appMenu="matMenu">
   <a mat-menu-item [routerLink]="['home']" (click)="setTitle('home')">Home</a>
+  <a mat-menu-item [routerLink]="['employees']" (click)="setTitle('employees')"
+    >employees</a
+  >
 </mat-menu>
 <router-outlet></router-outlet>
