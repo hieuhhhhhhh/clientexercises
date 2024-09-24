@@ -33,4 +33,14 @@ export class EmployeeService {
     window.alert(errorMessage); // probably should console.log when going into production
     return throwError(() => errorMessage);
   }
+
+  /**
+   * Update an employee on the server using http put, server returns
+   * updated employee, then return it as Observable to caller
+   */
+  update(employee: Employee): Observable<Employee> {
+    return this.http
+      .put<Employee>(`${this.resourceURL}`, employee)
+      .pipe(retry(1), catchError(this.handleError));
+  } // update
 } // EmployeeService
