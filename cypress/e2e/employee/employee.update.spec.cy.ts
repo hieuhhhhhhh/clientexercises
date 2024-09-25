@@ -3,7 +3,7 @@ describe('employee update test', () => {
     cy.visit('/');
     cy.get('button').click();
     cy.contains('a', 'employees').click();
-    cy.contains('Nhat').click(); // replace Slick with your own name
+    cy.contains('Doe').click(); // replace Slick with your own name
     cy.get("[type='email']").clear();
     cy.get("[type='email']").type('someemail@domain.com');
     cy.get('form').submit();

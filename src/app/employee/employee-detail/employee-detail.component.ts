@@ -14,9 +14,12 @@ export class EmployeeDetailComponent implements OnInit {
     phoneno: '',
     email: '',
   };
+
   @Input() employees: Employee[] | null = null;
   @Output() cancelled = new EventEmitter();
+  @Output() deleted = new EventEmitter();
   @Output() saved = new EventEmitter();
+
   employeeForm: FormGroup;
   title: FormControl;
   firstname: FormControl;

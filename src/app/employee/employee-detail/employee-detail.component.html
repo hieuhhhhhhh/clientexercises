@@ -40,6 +40,18 @@
     <span>
       <button mat-raised-button type="submit">Save</button>
     </span>
+
+    <span>
+      <button
+        *ngIf="selectedEmployee.id"
+        mat-raised-button
+        type="button"
+        (click)="deleted.emit(selectedEmployee)"
+      >
+        Delete
+      </button>
+    </span>
+
     <span>
       <button
         mat-raised-button

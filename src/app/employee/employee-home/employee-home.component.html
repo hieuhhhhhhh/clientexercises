@@ -14,6 +14,18 @@
     >Loading Employees from server...</ng-template
   >
 </mat-card>
+
+<div class="pad5" *ngIf="hideEditForm">
+  <mat-icon
+    (click)="newEmployee()"
+    matTooltip="Add New Employee"
+    class="addicon"
+    color="primary"
+  >
+    control_point
+  </mat-icon>
+</div>
+
 <mat-card *ngIf="!hideEditForm">
   <mat-card-header>
     <mat-card-title>
@@ -23,8 +35,9 @@
   <mat-card-content>
     <app-employee-detail
       [selectedEmployee]="employee"
-      (cancelled)="cancel()"
-      (saved)="update($event)"
+      (cancelled)="cancel('cancelled')"
+      (saved)="save($event)"
+      (deleted)="delete($event)"
     >
     </app-employee-detail>
   </mat-card-content>

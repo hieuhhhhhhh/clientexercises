@@ -11,7 +11,7 @@ export class EmployeeHomeComponent implements OnInit {
   employees$?: Observable<Employee[]>;
   employee: Employee;
   hideEditForm: boolean;
-  initialLoad: boolean;
+  todo: string;
   constructor(public employeeService: EmployeeService) {
     this.employee = {
       id: 0,
@@ -23,20 +23,14 @@ export class EmployeeHomeComponent implements OnInit {
     };
     this.msg = '';
     this.hideEditForm = true;
-    this.initialLoad = true;
+    this.todo = '';
   } // constructor
   ngOnInit(): void {
-    this.msg = 'loading employees from server...';
-    this.employees$ = this.employeeService.get().pipe(
-      tap(() => {
-        if (this.initialLoad) {
-          this.msg = 'employees loaded!';
-          this.initialLoad = false;
-        }
-      }),
-    );
+    (this.employees$ = this.employeeService.get()),
+      catchError((err) => (this.msg = err.message));
   } // ngOnInit
   select(employee: Employee): void {
+    this.todo = 'update';
     this.employee = employee;
     this.msg = `${employee.lastname} selected`;
     this.hideEditForm = !this.hideEditForm;
@@ -44,8 +38,8 @@ export class EmployeeHomeComponent implements OnInit {
   /**
    * cancelled - event handler for cancel button
    */
-  cancel(): void {
-    this.msg = 'Operation cancelled';
+  cancel(msg?: string): void {
+    msg ? (this.msg = 'Operation cancelled') : null;
     this.hideEditForm = !this.hideEditForm;
   } // cancel
   /**
@@ -59,4 +53,55 @@ export class EmployeeHomeComponent implements OnInit {
       complete: () => (this.hideEditForm = !this.hideEditForm),
     });
   } // update
+  /**
+   * save - determine whether we're doing and add or an update
+   */
+  save(employee: Employee): void {
+    employee.id ? this.update(employee) : this.add(employee);
+  } // save
+  /**
+   * add - send employee to service, receive new employee back
+   */
+  add(employee: Employee): void {
+    employee.id = 0;
+    this.employeeService.add(employee).subscribe({
+      // Create observer object
+      next: (emp: Employee) => {
+        this.msg = `Employee ${emp.id} added!`;
+      },
+      error: (err: Error) =>
+        (this.msg = `Employee not added! - ${err.message}`),
+      complete: () => (this.hideEditForm = !this.hideEditForm),
+    });
+  } // add
+  /**
+   * delete - send employee id to service for deletion
+   */
+  delete(employee: Employee): void {
+    this.employeeService.delete(employee.id).subscribe({
+      // Create observer object
+      next: (numOfEmployeesDeleted: number) => {
+        numOfEmployeesDeleted === 1
+          ? (this.msg = `Employee ${employee.lastname} deleted!`)
+          : (this.msg = `employee not deleted`);
+      },
+      error: (err: Error) => (this.msg = `Delete failed! - ${err.message}`),
+      complete: () => (this.hideEditForm = !this.hideEditForm),
+    });
+  } // delete
+  /**
+   * newEmployee - create new employee instance
+   */
+  newEmployee(): void {
+    this.employee = {
+      id: 0,
+      title: '',
+      firstname: '',
+      lastname: '',
+      phoneno: '',
+      email: '',
+    };
+    this.hideEditForm = !this.hideEditForm;
+    this.msg = 'New Employee';
+  } // newEmployee
 } // EmployeeHomeComponent

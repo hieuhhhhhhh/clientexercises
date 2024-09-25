@@ -8,10 +8,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MatFormFieldModule,
 } from '@angular/material/form-field';
+
 const MaterialComponents = [
   MatButtonModule,
   MatCardModule,
@@ -21,7 +23,9 @@ const MaterialComponents = [
   MatListModule,
   MatMenuModule,
   MatToolbarModule,
+  MatTooltipModule, // added MatTooltipModule
 ];
+
 @NgModule({
   declarations: [],
   providers: [

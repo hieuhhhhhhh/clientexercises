@@ -43,4 +43,23 @@ export class EmployeeService {
       .put<Employee>(`${this.resourceURL}`, employee)
       .pipe(retry(1), catchError(this.handleError));
   } // update
+
+  /**
+   * add an employee on the server via POST, return Observable
+   */
+  add(employee: Employee): Observable<Employee> {
+    employee.id = 0;
+    return this.http
+      .post<Employee>(this.resourceURL, employee)
+      .pipe(retry(1), catchError(this.handleError));
+  } // add
+
+  /**
+   * delete an employee on the server, return Observable
+   */
+  delete(id: number): Observable<number> {
+    return this.http
+      .delete<number>(`${this.resourceURL}/${id}`)
+      .pipe(retry(1), catchError(this.handleError));
+  } // delete
 } // EmployeeService
