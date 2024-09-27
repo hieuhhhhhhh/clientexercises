@@ -1,7 +1,11 @@
-<form [formGroup]="employeeForm" (ngSubmit)="updateSelectedEmployee()">
+<form [formGroup]="employeeForm">
   <div layout="row">
     <mat-form-field>
       <mat-label>Title</mat-label>
+      <mat-error *ngIf="title.errors && (title.dirty || title.touched)">
+        Title is required
+      </mat-error>
+
       <input
         matInput
         type="text"
@@ -12,33 +16,57 @@
       />
     </mat-form-field>
   </div>
+
   <div layout="row">
     <mat-form-field>
       <mat-label>First Name</mat-label>
+      <mat-error
+        *ngIf="firstname.errors && (firstname.dirty || firstname.touched)"
+      >
+        Name is required
+      </mat-error>
       <input matInput type="text" required formControlName="firstname" />
     </mat-form-field>
   </div>
   <div layout="row">
     <mat-form-field>
       <mat-label>Last Name</mat-label>
+      <mat-error
+        *ngIf="lastname.errors && (lastname.dirty || lastname.touched)"
+      >
+        Name is required
+      </mat-error>
       <input matInput type="text" required formControlName="lastname" />
     </mat-form-field>
   </div>
   <div layout="row">
     <mat-form-field>
       <mat-label>Phone #</mat-label>
+      <mat-error *ngIf="phoneno.errors && (phoneno.dirty || phoneno.touched)">
+        Phone is required
+      </mat-error>
       <input matInput type="text" required formControlName="phoneno" />
     </mat-form-field>
   </div>
   <div layout="row">
     <mat-form-field>
       <mat-label>Email</mat-label>
+      <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
+        Email is required
+      </mat-error>
       <input matInput type="email" required formControlName="email" />
     </mat-form-field>
   </div>
   <div class="mat-pad-sm">
     <span>
-      <button mat-raised-button type="submit">Save</button>
+      <button
+        mat-raised-button
+        type="button"
+        (click)="updateSelectedEmployee()"
+        [disabled]="!employeeForm.valid"
+      >
+        Save
+      </button>
     </span>
 
     <span>

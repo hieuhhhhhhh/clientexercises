@@ -1,5 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Employee } from '../employee';
 @Component({
   selector: 'app-employee-detail',
@@ -27,7 +32,7 @@ export class EmployeeDetailComponent implements OnInit {
   phoneno: FormControl;
   email: FormControl;
   constructor(private builder: FormBuilder) {
-    this.title = new FormControl('');
+    this.title = new FormControl('', Validators.compose([Validators.required]));
     this.firstname = new FormControl('');
     this.lastname = new FormControl('');
     this.phoneno = new FormControl('');
