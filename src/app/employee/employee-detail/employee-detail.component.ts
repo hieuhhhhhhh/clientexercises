@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Employee } from '../employee';
+import { ValidatePhone } from '../../validators/phoneno.validator';
+
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
@@ -35,7 +37,10 @@ export class EmployeeDetailComponent implements OnInit {
     this.title = new FormControl('', Validators.compose([Validators.required]));
     this.firstname = new FormControl('');
     this.lastname = new FormControl('');
-    this.phoneno = new FormControl('');
+    this.phoneno = new FormControl(
+      '',
+      Validators.compose([Validators.required, ValidatePhone]),
+    );
     this.email = new FormControl('');
     this.employeeForm = new FormGroup({
       title: this.title,

@@ -43,7 +43,13 @@
     <mat-form-field>
       <mat-label>Phone #</mat-label>
       <mat-error *ngIf="phoneno.errors && (phoneno.dirty || phoneno.touched)">
-        Phone is required
+        <span *ngIf="phoneno.hasError('required')">Phone is required.</span>
+        <span
+          *ngIf="
+            !phoneno.hasError('required') && phoneno.hasError('invalidPhone')
+          "
+          >(###)###-####</span
+        >
       </mat-error>
       <input matInput type="text" required formControlName="phoneno" />
     </mat-form-field>
