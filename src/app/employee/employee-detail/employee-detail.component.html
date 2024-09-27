@@ -58,7 +58,11 @@
     <mat-form-field>
       <mat-label>Email</mat-label>
       <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
-        Email is required
+        <span *ngIf="email.hasError('required')">Email is required.</span>
+        <span
+          *ngIf="!email.hasError('required') && email.hasError('invalidEmail')"
+          >xxx&#64;xxx.xxx</span
+        >
       </mat-error>
       <input matInput type="email" required formControlName="email" />
     </mat-form-field>

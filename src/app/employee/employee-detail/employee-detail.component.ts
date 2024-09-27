@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Employee } from '@app/employee/employee';
 import { ValidatePhone } from '@app/validators/phoneno.validator';
+import { ValidateEmail } from '../../validators/email.validator';
 
 @Component({
   selector: 'app-employee-detail',
@@ -41,7 +42,11 @@ export class EmployeeDetailComponent implements OnInit {
       '',
       Validators.compose([Validators.required, ValidatePhone]),
     );
-    this.email = new FormControl('');
+    this.email = new FormControl(
+      '',
+      Validators.compose([Validators.required, ValidateEmail]),
+    );
+
     this.employeeForm = new FormGroup({
       title: this.title,
       firstname: this.firstname,
