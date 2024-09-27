@@ -25,10 +25,22 @@ export class EmployeeHomeComponent implements OnInit {
     this.hideEditForm = true;
     this.todo = '';
   } // constructor
+
   ngOnInit(): void {
-    (this.employees$ = this.employeeService.get()),
-      catchError((err) => (this.msg = err.message));
+    this.msg = `Loading...`;
+    this.getAll();
   } // ngOnInit
+  /**
+   * getAll - retrieve everything
+   */
+  getAll(): void {
+    this.employees$ = this.employeeService.getAll();
+    this.employees$.subscribe({
+      error: (e: Error) => (this.msg = `Couldn't get employees - ${e.message}`),
+      complete: () => (this.msg = `Employees loaded!`),
+    });
+  } // getAll
+
   select(employee: Employee): void {
     this.todo = 'update';
     this.employee = employee;
@@ -64,7 +76,7 @@ export class EmployeeHomeComponent implements OnInit {
    */
   add(employee: Employee): void {
     employee.id = 0;
-    this.employeeService.add(employee).subscribe({
+    this.employeeService.update(employee).subscribe({
       // Create observer object
       next: (emp: Employee) => {
         this.msg = `Employee ${emp.id} added!`;

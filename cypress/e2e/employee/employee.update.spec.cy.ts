@@ -6,7 +6,7 @@ describe('employee update test', () => {
     cy.contains('Doe').click(); // replace Slick with your own name
     cy.get("[type='email']").clear();
     cy.get("[type='email']").type('someemail@domain.com');
-    cy.get('form').submit();
+    cy.get("[type='save_button']").click();
     cy.contains('updated!');
   });
 });
