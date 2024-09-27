@@ -5,8 +5,8 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { Employee } from '../employee';
-import { ValidatePhone } from '../../validators/phoneno.validator';
+import { Employee } from '@app/employee/employee';
+import { ValidatePhone } from '@app/validators/phoneno.validator';
 
 @Component({
   selector: 'app-employee-detail',
