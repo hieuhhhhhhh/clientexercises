@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MatFormFieldModule,
@@ -24,6 +26,8 @@ const MaterialComponents = [
   MatMenuModule,
   MatToolbarModule,
   MatTooltipModule, // added MatTooltipModule
+  MatTableModule,
+  MatSortModule,
 ];
 
 @NgModule({
