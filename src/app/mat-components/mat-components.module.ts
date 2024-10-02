@@ -11,6 +11,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MatFormFieldModule,
@@ -25,9 +29,12 @@ const MaterialComponents = [
   MatListModule,
   MatMenuModule,
   MatToolbarModule,
-  MatTooltipModule, // added MatTooltipModule
+  MatTooltipModule,
   MatTableModule,
   MatSortModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 @NgModule({
